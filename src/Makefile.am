@@ -1,4 +1,7 @@
-INCLUDES = -I$(VARNISHSRC)/include -I$(VARNISHSRC)
+INCLUDES = -I$(VARNISHSRC)/include \
+           -I$(VARNISHSRC)/bin/varnishd \
+           -I$(VARNISHSRC)
+
 
 vmoddir = $(VMODDIR)
 vmod_LTLIBRARIES = libvmod_rewrite.la
@@ -10,8 +13,11 @@ libvmod_rewrite_la_SOURCES = \
 	vcc_if.h \
 	vmod_rewrite.c
 
-vcc_if.c vcc_if.h: $(VARNISHSRC)/lib/libvmod_std/vmod.py $(top_srcdir)/src/vmod_rewrite.vcc
-	@PYTHON@ $(VARNISHSRC)/lib/libvmod_std/vmod.py $(top_srcdir)/src/vmod_rewrite.vcc
+
+vcc_if.c vcc_if.h: vmod_rewrite.vcc
+	@PYTHON@ $(VARNISHSRC)/lib/libvcc/vmodtool.py vmod_rewrite.vcc
+
+
 
 VMOD_TESTS = tests/*.vtc
 .PHONY: $(VMOD_TESTS)

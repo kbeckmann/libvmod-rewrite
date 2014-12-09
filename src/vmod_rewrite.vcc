@@ -1,3 +1,2 @@
-Module rewrite
-Init init_function
-Function VOID rewrite_re(STRING, STRING)
+$Module rewrite 3 Rewrite Module
+$Function VOID rewrite_re(STRING, STRING)

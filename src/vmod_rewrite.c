@@ -27,13 +27,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <regex.h>
 
 #include "vrt.h"
 #include "vqueue.h"
 #include "vsha256.h"
-#include "bin/varnishd/cache.h"
-#include "bin/varnishd/stevedore.h"
+#include "bin/varnishd/cache/cache.h"
+//#include "bin/varnishd/stevedore.h"
 #include "vcc_if.h"
 
 int init_function(struct vmod_priv *priv, const struct VCL_conf *conf) {
